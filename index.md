@@ -9,6 +9,8 @@ hide: true
 <span style="color: #d02323ff">canvas</span>
 </a>
 
+<button class="medium filledHighlight primary">hello</button>
+
 ### Me and Team
 
 Hi! My name is [Your Full Name].
