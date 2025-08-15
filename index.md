@@ -3,7 +3,7 @@ layout: base
 title: I'm [Your Full Name]
 hide: true
 ---
-### Hello this is a test
+### canvas button
 
 <a href="https://poway.instructure.com/?login_success=1" class="button small" style="background-color: #d34bafff">
 <span style="color: #d02323ff">canvas</span>
