@@ -6,7 +6,7 @@ hide: true
 ### Hello this is a test
 
 <a href="https://poway.instructure.com/?login_success=1" class="button small" style="background-color: #d34bafff">
-<span style="color: #d02323ff">VSCODE</span>
+<span style="color: #d02323ff">canvas</span>
 </a>
 
 ### Me and Team
