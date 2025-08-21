@@ -5,7 +5,7 @@ permalink: /about/
 comments: true
 ---
 
-## Hello! My name is Virginia and here is a bt about me
+## Hello, My name is Virginia and here is a bit about me!
 
 Here are some places I have lived.
 
