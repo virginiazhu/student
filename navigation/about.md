@@ -5,7 +5,7 @@ permalink: /about/
 comments: true
 ---
 
-## As a conversation Starter
+## Hello! My name is Virginia and here is a bt about me
 
 Here are some places I have lived.
 
