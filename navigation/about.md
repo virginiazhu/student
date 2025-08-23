@@ -5,13 +5,127 @@ permalink: /about/
 comments: true
 ---
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Confetti Fun!</title>
+  <style>
+    /* Confetti canvas stays in the background */
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Centered message styling */
+    .center-message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+      color: #222;
+      font-size: 3rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #ff6ec4, #7873f5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body>
+  <!-- Confetti canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Cool center message -->
+  <div class="center-message">
+    Welcome!!
+  </div>
+
+  <!-- Confetti script -->
+  <script>
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    const confetti = [];
+    const confettiCount = 150;
+    const colors = ['#f94144', '#f3722c', '#f9c74f', '#43aa8b', '#577590', '#9b5de5'];
+
+    for (let i = 0; i < confettiCount; i++) {
+      confetti.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height - canvas.height,
+        r: Math.random() * 6 + 4,
+        d: Math.random() * confettiCount,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        tilt: Math.floor(Math.random() * 10) - 10,
+        tiltAngleIncremental: (Math.random() * 0.07) + 0.05,
+        tiltAngle: 0
+      });
+    }
+
+    function drawConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      confetti.forEach((c, index) => {
+        ctx.beginPath();
+        ctx.lineWidth = c.r;
+        ctx.strokeStyle = c.color;
+        ctx.moveTo(c.x + c.tilt + (c.r / 2), c.y);
+        ctx.lineTo(c.x + c.tilt, c.y + c.tilt + (c.r / 2));
+        ctx.stroke();
+      });
+
+      updateConfetti();
+    }
+
+    function updateConfetti() {
+      confetti.forEach((c, i) => {
+        c.tiltAngle += c.tiltAngleIncremental;
+        c.y += (Math.cos(c.d) + 3 + c.r / 2) / 2;
+        c.x += Math.sin(0);
+        c.tilt = Math.sin(c.tiltAngle) * 15;
+
+        if (c.y > canvas.height) {
+          confetti[i] = {
+            x: Math.random() * canvas.width,
+            y: -20,
+            r: c.r,
+            d: c.d,
+            color: c.color,
+            tilt: c.tilt,
+            tiltAngleIncremental: c.tiltAngleIncremental,
+            tiltAngle: c.tiltAngle
+          };
+        }
+      });
+    }
+
+    (function loop() {
+      requestAnimationFrame(loop);
+      drawConfetti();
+    })();
+  </script>
+</body>
+</html>
+
+
 ## Hello, My name is Virginia or Ginny and here is a bit about me!
 
-Here are some places I have lived.
-
-<comment>
-Flags are made using Wikipedia images
-</comment>
 
 <style>
     /* Style looks pretty compact, 
@@ -60,10 +174,7 @@ Flags are made using Wikipedia images
     // 2. Define a JavaScript object for our http source and our data rows for the Living in the World grid
     var http_source = "https://upload.wikimedia.org/wikipedia/commons/";
     var living_in_the_world = [
-        {"flag": "0/01/Flag_of_California.svg", "greeting": "Hey", "description": "California - forever"},
-        {"flag": "b/b9/Flag_of_Oregon.svg", "greeting": "Hi", "description": "Oregon - 9 years"},
-        {"flag": "b/be/Flag_of_England.svg", "greeting": "Alright mate", "description": "England - 2 years"},
-        {"flag": "e/ef/Flag_of_Hawaii.svg", "greeting": "Aloha", "description": "Hawaii - 2 years"},
+        
     ];
 
     // 3a. Consider how to update style count for size of container
@@ -97,42 +208,30 @@ Flags are made using Wikipedia images
     }
 </script>
 
-### Journey through Life
+### Some things about me!
 
-Here is what I did at those places
+- I love to swim 🏊! I am on the school swim team
+- I have been playing piano since I was five years old 🎹
+- I am very passionate about STEM! My academic interests are math 🧮, computer science 💻, and astrophysics 🪐. 
+- I am a part of CyberPatriot and won nationals last year with my team!
+- I am the Director of Social Media at All Girls STEM Society, where we work to inspire young girls to see a future in STEM. 💗
+- I also love trying new food! My favorite restaurant is Seven Grams or Din Tai Fung. 🥟
+- Traveling is something I also enjoy. One day I want to travel the ENTIRE WORLDDD 🌏✈️
+- 🎶 Listening to music is something I do quite often! I listen to mostly RnB, my favorite artists are Daniel Ceasar, Brent Faiyaz, Steve Lacy, SZA! 
 
-- 🏫 Lots of Elementary Schools in Tucson, LA, Honolulu, and Glendale (CA)
-- 🏫 Middle and High School in Glendale (CA), Hoover High graduated '77
-- 🎓 Glendale CA Community College, UCLA Extension, LA Wilshire Computer Tech School '77 to '79
-- ⛪ England, London Missionary for Church of Jesus Christ of Latter-day Saints '79 to '81
-- 💼 Culver City, Glendale CA founder at Ashton-Tate, original PC's dBase 2 and 3 '82 to '87
-- 🎓 Eugene Oregon Undergraduate CompSci Degree at University of Oregon (Go Ducks!) '89 to '91
-- 💼 Eugene Oregon, founder and owner @ Microniche `88, Point Control CAD CAM developer '91 to '96
-- 🏢 San Diego CA Qualcomm, Satellite Comm and 1st Mobile OS (BREW) '96 to '19
-- 👨‍🏫 San Diego CA Teacher of Computer Science @ Del Norte High School San Diego '19 to present
-
-### Culture, Family, and Fun
-
-Everything for me, as for many others, revolves around family and faith.
-
-- My mother told me that I was Danish, English. and Irish, here is my researched [family tree]({{site.baseurl}}/images/about/familytree.png)
-- My family is pretty big as I have been married twice, my 1st wife passed away.  We have had 5 kids, 4 adopted by me, 1 biological.  Plus, there are three grandkids.  My name to my grandkids is Abuilito.
-- The gallery of pics has some of my family, fun, culture and faith memories.
+### This summer I went to UCSD COSMOS! I learned lots of coding and made a color recognition robot monkey to win first overall in the final project.
 
 <comment>
-Gallery of Pics, scroll to the right for more ...
-</comment>
+Here are some pictures!!
+<comment>
+
 <div class="image-gallery">
   <img src="{{site.baseurl}}/images/about/cosmos.png" alt="Image 1">
-  <img src="{{site.baseurl}}/images/about/john_tamara.jpg" alt="Image 2">
-  <img src="{{site.baseurl}}/images/about/tamara_fam.jpg" alt="Image 3">
-  <img src="{{site.baseurl}}/images/about/surf.jpg" alt="Image 4">
-  <img src="{{site.baseurl}}/images/about/john_lora.jpg" alt="Image 5">
-  <img src="{{site.baseurl}}/images/about/lora_fam.jpg" alt="Image 6">
-  <img src="{{site.baseurl}}/images/about/lora_fam2.jpg" alt="Image 7">
-  <img src="{{site.baseurl}}/images/about/pj_party.jpg" alt="Image 8">
-  <img src="{{site.baseurl}}/images/about/trent_family.png" alt="Image 9">
-  <img src="{{site.baseurl}}/images/about/claire.jpg" alt="Image 10">
-  <img src="{{site.baseurl}}/images/about/grandkids.jpg" alt="Image 11">
-  <img src="{{site.baseurl}}/images/about/farm.jpg" alt="Image 12">
+  <img src="{{site.baseurl}}/images/about/IMG_9801.png" alt="Image 2">
+  <img src="{{site.baseurl}}/images/about/IMG_1552.png" alt="Image 3">
+  <img src="{{site.baseurl}}/images/about/IMG_6397.png" alt="Image 4">
+  <img src="{{site.baseurl}}/images/about/IMG_6465.png" alt="Image 5">
+  <img src="{{site.baseurl}}/images/about/IMG_6449.png" alt="Image 6">
+  <img src="{{site.baseurl}}/images/about/IMG_6476.png" alt="Image 7">
+  <img src="{{site.baseurl}}/images/about/IMG_6526.png" alt="Image 8">
 </div>
