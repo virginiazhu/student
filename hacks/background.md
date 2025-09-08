@@ -1,22 +1,25 @@
 ---
-layout: opencs
+layout: base
 title: Background with Object
 description: Use JavaScript to have an in motion background.
-sprite: /images/platformer/sprites/flying-ufo.png
-background: /images/platformer/backgrounds/alien_planet1.jpg
+# below are images for the game
+sprite: images/platformer/sprites/flying-ufo.png
+background: mkaimages/platformer/backgrounds/alien_planet1.jpg
 permalink: /background
 ---
-
+<!-- This is the Game World -->
 <canvas id="world"></canvas>
-
+<!-- Below is code that makes the Game World -->
 <script>
   const canvas = document.getElementById("world");
   const ctx = canvas.getContext('2d');
   const backgroundImg = new Image();
   const spriteImg = new Image();
+  // Jekyll assignments of Images
   backgroundImg.src = '{{page.background}}';
   spriteImg.src = '{{page.sprite}}';
 
+// Image Loading Code Block
   let imagesLoaded = 0;
   backgroundImg.onload = function() {
     imagesLoaded++;
@@ -26,9 +29,12 @@ permalink: /background
     imagesLoaded++;
     startGameWorld();
   };
+/* This block Starts the Game 
+* It checks for all images being loaded before starting 
+*/
 
   function startGameWorld() {
-    if (imagesLoaded < 2) return;
+    if (imagesLoaded < 2) return; //Delays start until everything is loaded
 
     class GameObject {
       constructor(image, width, height, x = 0, y = 0, speedRatio = 0) {
